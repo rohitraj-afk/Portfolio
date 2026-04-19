@@ -1,0 +1,195 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --app-bg: #f8fafc;
+  --app-bg-elevated: #ffffff;
+  --section-bg: #f8fafc;
+  --panel-bg: rgba(255, 255, 255, 0.76);
+  --nav-bg: rgba(248, 250, 252, 0.82);
+  --input-bg: rgba(255, 255, 255, 0.9);
+  --text-primary: #020617;
+  --text-secondary: #1e293b;
+  --text-muted: #475569;
+  --border-color: rgba(15, 23, 42, 0.12);
+  --hero-from: #eff6ff;
+  --hero-to: #f8fafc;
+  --accent-rgb: 217 119 6;
+  --accent-dark-rgb: 180 83 9;
+  --selection-bg: rgba(217, 119, 6, 0.2);
+  --selection-text: #0f172a;
+}
+
+html.dark {
+  color-scheme: dark;
+  --app-bg: #020617;
+  --app-bg-elevated: #0f172a;
+  --section-bg: #0f172a;
+  --panel-bg: rgba(15, 23, 42, 0.72);
+  --nav-bg: rgba(2, 6, 23, 0.7);
+  --input-bg: rgba(15, 23, 42, 0.75);
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --border-color: rgba(148, 163, 184, 0.16);
+  --hero-from: #020617;
+  --hero-to: #0f172a;
+  --accent-rgb: 34 211 238;
+  --accent-dark-rgb: 14 165 233;
+  --selection-bg: rgba(34, 211, 238, 0.2);
+  --selection-text: #f8fafc;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply m-0 antialiased;
+    background: var(--app-bg);
+    color: var(--text-secondary);
+  }
+
+  * {
+    @apply transition-colors duration-300;
+  }
+
+  ::selection {
+    background: var(--selection-bg);
+    color: var(--selection-text);
+  }
+}
+
+@layer utilities {
+  .app-shell {
+    background:
+      radial-gradient(circle at top, rgba(217, 119, 6, 0.08), transparent 35%),
+      linear-gradient(180deg, var(--app-bg) 0%, var(--app-bg) 100%);
+    color: var(--text-secondary);
+  }
+
+  .hero-shell {
+    background: linear-gradient(
+      180deg,
+      var(--hero-from) 0%,
+      var(--app-bg) 100%
+    );
+  }
+
+  .theme-section {
+    background: var(--section-bg);
+    color: var(--text-secondary);
+  }
+
+  .theme-panel {
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+  }
+
+  .theme-nav {
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(18px);
+  }
+
+  .theme-heading {
+    color: var(--text-primary);
+  }
+
+  .theme-text {
+    color: var(--text-secondary);
+  }
+
+  .theme-muted {
+    color: var(--text-muted);
+  }
+
+  .theme-input {
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+  }
+
+  .hero-cta {
+    color: #ffffff;
+    background: rgb(var(--accent-rgb));
+  }
+
+  html:not(.dark) .hero-cta {
+    color: var(--text-primary);
+    background: rgba(var(--accent-rgb) / 0.16);
+  }
+
+  .project-card-title {
+    color: var(--text-primary);
+  }
+
+  html:not(.dark) .project-card-title,
+  html:not(.dark) .project-card-text,
+  html:not(.dark) .project-card-meta {
+    color: var(--text-secondary);
+  }
+
+  html:not(.dark) .project-active-filter {
+    color: var(--text-primary);
+    background: rgba(var(--accent-rgb) / 0.16);
+  }
+
+  .footer-resource-button {
+    color: rgb(var(--accent-dark-rgb));
+    background: rgba(var(--accent-rgb) / 0.15);
+    border: 1px solid rgba(var(--accent-rgb) / 0.2);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    transition-delay: 0ms;
+  }
+
+  html:not(.dark) .footer-resource-button:hover {
+    background: rgba(var(--accent-rgb) / 0.22);
+    box-shadow: 0 14px 28px rgba(217, 119, 6, 0.14);
+  }
+
+  html:not(.dark) .footer-social-link {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+    transition-delay: 0ms;
+  }
+
+  .footer-social-link {
+    transition-delay: 0ms;
+  }
+
+  html:not(.dark) .footer-social-link:hover {
+    background: rgba(var(--accent-rgb) / 0.16);
+    color: var(--text-primary);
+  }
+
+  .glassmorphism {
+    @apply backdrop-blur-xl shadow-xl;
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+  }
+
+  .gradient-text {
+    background-image: linear-gradient(
+      90deg,
+      rgb(var(--accent-rgb)),
+      rgb(var(--accent-dark-rgb)),
+      rgb(var(--accent-rgb))
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+}
