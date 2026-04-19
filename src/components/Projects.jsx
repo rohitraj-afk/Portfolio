@@ -13,7 +13,7 @@ export default function Projects() {
             description: 'Modern, futuristic portfolio built with React, Tailwind CSS, and Framer Motion.',
             tech: ['React', 'Tailwind CSS', 'Framer Motion'],
             category: 'frontend',
-            github: 'https://github.com/rohitraj-afk',
+            github: 'https://github.com/rohitraj-afk/Portfolio',
             demo: '#',
         },
         {
