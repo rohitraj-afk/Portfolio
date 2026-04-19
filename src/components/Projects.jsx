@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import { FiGithub } from 'react-icons/fi';
 
 export default function Projects() {
     const [filter, setFilter] = useState('all');
@@ -14,7 +14,6 @@ export default function Projects() {
             tech: ['React', 'Tailwind CSS', 'Framer Motion'],
             category: 'frontend',
             github: 'https://github.com/rohitraj-afk/Portfolio',
-            demo: '#',
         },
         {
             id: 2,
@@ -23,7 +22,6 @@ export default function Projects() {
             tech: ['HTML', 'CSS', 'JavaScript'],
             category: 'frontend',
             github: 'https://github.com/rohitraj-afk/Tik-Tak-Toe',
-            demo: '#',
         },
         {
             id: 3,
@@ -32,7 +30,6 @@ export default function Projects() {
             tech: ['Arduino', 'LM35', 'IRFZ44N MOSFET'],
             category: 'Electrical & Electronics',
             github: 'https://github.com/rohitraj-afk',
-            demo: '#',
         },
     ];
 
@@ -128,7 +125,7 @@ export default function Projects() {
                                 animate="visible"
                                 exit="exit"
                                 whileHover={{ y: -4, transition: { duration: 0.2, ease: 'easeOut' } }}
-                                className="group p-6 glassmorphism rounded-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden h-full flex flex-col"
+                                className="project-card group p-6 glassmorphism rounded-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden h-full flex flex-col"
                             >
                                 {/* Card Header */}
                                 <div className="mb-4">
@@ -170,18 +167,6 @@ export default function Projects() {
                                         >
                                             <FiGithub size={18} />
                                         </motion.a>
-                                        {project.demo !== '#' && (
-                                            <motion.a
-                                                whileHover={{ scale: 1.08 }}
-                                                whileTap={{ scale: 0.96 }}
-                                                href={project.demo}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="p-2 rounded-lg bg-accent text-white hover:bg-accent/80 transition-colors duration-300"
-                                            >
-                                                <FiExternalLink size={18} />
-                                            </motion.a>
-                                        )}
                                     </div>
                                 </div>
                             </motion.div>

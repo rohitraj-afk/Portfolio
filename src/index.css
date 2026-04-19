@@ -5,15 +5,26 @@
   --app-bg: #f8fafc;
   --app-bg-elevated: #ffffff;
   --section-bg: #f8fafc;
-  --panel-bg: rgba(255, 255, 255, 0.76);
-  --nav-bg: rgba(248, 250, 252, 0.82);
-  --input-bg: rgba(255, 255, 255, 0.9);
+  --panel-bg: rgba(255, 255, 255, 0.88);
+  --nav-bg: rgba(248, 250, 252, 0.9);
+  --input-bg: rgba(255, 255, 255, 0.96);
   --text-primary: #020617;
   --text-secondary: #1e293b;
   --text-muted: #475569;
   --border-color: rgba(15, 23, 42, 0.12);
   --hero-from: #eff6ff;
   --hero-to: #f8fafc;
+  --app-bg-image: url("/site-bg-light.svg");
+  --bg-film-1: rgba(241, 245, 249, 0.82);
+  --bg-film-2: rgba(226, 232, 240, 0.64);
+  --bg-film-3: rgba(219, 234, 254, 0.58);
+  --bg-glow-primary: rgba(14, 165, 233, 0.1);
+  --bg-glow-secondary: rgba(59, 130, 246, 0.08);
+  --particle-glow: rgba(14, 165, 233, 0.12);
+  --bg-stripe-color: rgba(14, 165, 233, 0.02);
+  --bg-stripe-blend: multiply;
+  --bg-overlay-opacity: 0.3;
+  --bg-particle-opacity: 0.34;
   --accent-rgb: 217 119 6;
   --accent-dark-rgb: 180 83 9;
   --selection-bg: rgba(217, 119, 6, 0.2);
@@ -34,6 +45,17 @@ html.dark {
   --border-color: rgba(148, 163, 184, 0.16);
   --hero-from: #020617;
   --hero-to: #0f172a;
+  --app-bg-image: url("/site-bg-dark.svg");
+  --bg-film-1: rgba(2, 6, 23, 0.98);
+  --bg-film-2: rgba(1, 13, 40, 0.94);
+  --bg-film-3: rgba(2, 20, 46, 0.96);
+  --bg-glow-primary: rgba(34, 211, 238, 0.28);
+  --bg-glow-secondary: rgba(14, 165, 233, 0.22);
+  --particle-glow: rgba(34, 211, 238, 0.2);
+  --bg-stripe-color: rgba(34, 211, 238, 0.02);
+  --bg-stripe-blend: screen;
+  --bg-overlay-opacity: 0.55;
+  --bg-particle-opacity: 0.65;
   --accent-rgb: 34 211 238;
   --accent-dark-rgb: 14 165 233;
   --selection-bg: rgba(34, 211, 238, 0.2);
@@ -62,11 +84,149 @@ html.dark {
 }
 
 @layer utilities {
+  @keyframes haze-shift {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(0, -1.5%, 0) scale(1.03);
+    }
+    100% {
+      transform: translate3d(0, 1.5%, 0) scale(0.99);
+    }
+  }
+
+  @keyframes particles-float {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(-12px, 10px, 0) scale(1.04);
+    }
+    100% {
+      transform: translate3d(14px, -12px, 0) scale(0.98);
+    }
+  }
+
   .app-shell {
-    background:
-      radial-gradient(circle at top, rgba(217, 119, 6, 0.08), transparent 35%),
+    position: relative;
+    isolation: isolate;
+    background-image:
+      linear-gradient(
+        145deg,
+        var(--bg-film-1) 0%,
+        var(--bg-film-2) 55%,
+        var(--bg-film-3) 100%
+      ),
+      radial-gradient(
+        circle at 12% 8%,
+        var(--bg-glow-primary),
+        transparent 46%
+      ),
+      radial-gradient(
+        circle at 84% 18%,
+        var(--bg-glow-secondary),
+        transparent 44%
+      ),
+      var(--app-bg-image),
       linear-gradient(180deg, var(--app-bg) 0%, var(--app-bg) 100%);
+    background-repeat: no-repeat, no-repeat, no-repeat, repeat, no-repeat;
+    background-position:
+      center,
+      top left,
+      top right,
+      top center,
+      center;
+    background-size:
+      auto,
+      680px 680px,
+      560px 560px,
+      620px 620px,
+      auto;
+    background-attachment: fixed, fixed, fixed, fixed, fixed;
     color: var(--text-secondary);
+  }
+
+  .app-shell::before,
+  .app-shell::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .app-shell::before {
+    z-index: 0;
+    opacity: var(--bg-overlay-opacity);
+    background-image: repeating-linear-gradient(
+      130deg,
+      var(--bg-stripe-color) 0,
+      var(--bg-stripe-color) 2px,
+      transparent 2px,
+      transparent 7px
+    );
+    mix-blend-mode: var(--bg-stripe-blend);
+    animation: haze-shift 18s ease-in-out infinite alternate;
+  }
+
+  .app-shell::after {
+    z-index: 0;
+    opacity: var(--bg-particle-opacity);
+    background-image:
+      radial-gradient(
+        circle at 15% 22%,
+        var(--particle-glow) 0,
+        transparent 16%
+      ),
+      radial-gradient(
+        circle at 84% 24%,
+        var(--particle-glow) 0,
+        transparent 18%
+      ),
+      radial-gradient(
+        circle at 30% 72%,
+        var(--particle-glow) 0,
+        transparent 14%
+      ),
+      radial-gradient(
+        circle at 72% 82%,
+        var(--particle-glow) 0,
+        transparent 16%
+      );
+    filter: blur(16px);
+    animation: particles-float 20s ease-in-out infinite alternate;
+  }
+
+  .app-shell > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 768px) {
+    .app-shell {
+      background-size:
+        auto,
+        420px 420px,
+        340px 340px,
+        300px 300px,
+        auto;
+      background-attachment: scroll, scroll, scroll, scroll, scroll;
+    }
+
+    .app-shell::before {
+      opacity: calc(var(--bg-overlay-opacity) * 0.7);
+    }
+
+    .app-shell::after {
+      opacity: calc(var(--bg-particle-opacity) * 0.65);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .app-shell::before,
+    .app-shell::after {
+      animation: none;
+    }
   }
 
   .hero-shell {
@@ -78,7 +238,7 @@ html.dark {
   }
 
   .theme-section {
-    background: var(--section-bg);
+    background: transparent;
     color: var(--text-secondary);
   }
 
@@ -92,7 +252,33 @@ html.dark {
   .theme-nav {
     background: var(--nav-bg);
     border-bottom: 1px solid var(--border-color);
-    backdrop-filter: blur(18px);
+    backdrop-filter: blur(22px) saturate(135%);
+    box-shadow:
+      0 10px 24px rgba(15, 23, 42, 0.08),
+      0 1px 0 rgba(255, 255, 255, 0.08) inset,
+      0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+  }
+
+  html:not(.dark) .theme-panel,
+  html:not(.dark) .glassmorphism {
+    border: 1px solid rgba(15, 23, 42, 0.16);
+    box-shadow:
+      0 14px 30px rgba(15, 23, 42, 0.1),
+      0 2px 0 rgba(255, 255, 255, 0.75) inset;
+  }
+
+  html:not(.dark) .theme-nav {
+    border-bottom: 1px solid rgba(15, 23, 42, 0.14);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1);
+    background: rgba(248, 250, 252, 0.74);
+  }
+
+  html.dark .theme-nav {
+    background: rgba(2, 6, 23, 0.58);
+    box-shadow:
+      0 10px 24px rgba(2, 6, 23, 0.18),
+      0 1px 0 rgba(255, 255, 255, 0.05) inset,
+      0 -1px 0 rgba(34, 211, 238, 0.08) inset;
   }
 
   .theme-heading {
@@ -111,6 +297,18 @@ html.dark {
     background: var(--input-bg);
     border: 1px solid var(--border-color);
     color: var(--text-primary);
+  }
+
+  html:not(.dark) .theme-input {
+    border: 1px solid rgba(15, 23, 42, 0.18);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+  }
+
+  html:not(.dark) .theme-input:focus {
+    border-color: rgba(var(--accent-rgb) / 0.45);
+    box-shadow:
+      0 0 0 3px rgba(var(--accent-rgb) / 0.14),
+      0 1px 0 rgba(255, 255, 255, 0.8) inset;
   }
 
   .hero-cta {
@@ -133,9 +331,25 @@ html.dark {
     color: var(--text-secondary);
   }
 
+  html:not(.dark) .project-card {
+    background: rgba(255, 255, 255, 0.93);
+    border: 1px solid rgba(15, 23, 42, 0.18);
+    box-shadow:
+      0 18px 34px rgba(15, 23, 42, 0.12),
+      0 1px 0 rgba(255, 255, 255, 0.8) inset;
+  }
+
+  html:not(.dark) .project-card:hover {
+    box-shadow:
+      0 24px 42px rgba(15, 23, 42, 0.16),
+      0 0 0 1px rgba(var(--accent-rgb) / 0.24);
+  }
+
   html:not(.dark) .project-active-filter {
     color: var(--text-primary);
-    background: rgba(var(--accent-rgb) / 0.16);
+    background: rgba(var(--accent-rgb) / 0.22);
+    border: 1px solid rgba(var(--accent-rgb) / 0.28);
+    box-shadow: 0 10px 20px rgba(217, 119, 6, 0.14);
   }
 
   .footer-resource-button {
@@ -166,6 +380,22 @@ html.dark {
   html:not(.dark) .footer-social-link:hover {
     background: rgba(var(--accent-rgb) / 0.16);
     color: var(--text-primary);
+  }
+
+  .footer-shell {
+    backdrop-filter: blur(22px) saturate(135%);
+    background: rgba(2, 6, 23, 0.28);
+    box-shadow:
+      0 -18px 40px rgba(2, 6, 23, 0.32),
+      0 1px 0 rgba(148, 163, 184, 0.08) inset;
+  }
+
+  html:not(.dark) .footer-shell {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(22px) saturate(130%);
+    box-shadow:
+      0 -14px 34px rgba(15, 23, 42, 0.08),
+      0 1px 0 rgba(255, 255, 255, 0.88) inset;
   }
 
   .glassmorphism {

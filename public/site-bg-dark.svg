@@ -1,0 +1,48 @@
+<svg width="420" height="420" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgCore" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(210 210) rotate(90) scale(250)">
+      <stop stop-color="#0A1235" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#020617" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(86 126) rotate(90) scale(116)">
+      <stop stop-color="#22D3EE" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(338 262) rotate(90) scale(138)">
+      <stop stop-color="#0EA5E9" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#0EA5E9" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="trace" x1="20" y1="20" x2="400" y2="400" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#38BDF8" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="420" height="420" fill="url(#bgCore)"/>
+  <rect width="420" height="420" fill="url(#glowA)"/>
+  <rect width="420" height="420" fill="url(#glowB)"/>
+
+  <g stroke="url(#trace)" stroke-width="1.2" stroke-linecap="round">
+    <path d="M32 86H144V144H232"/>
+    <path d="M230 86H296V48H378"/>
+    <path d="M196 328H286V276H382"/>
+    <path d="M44 338H114V286H172"/>
+  </g>
+
+  <g fill="#67E8F9" fill-opacity="0.42">
+    <circle cx="32" cy="86" r="3.5"/>
+    <circle cx="144" cy="144" r="3.5"/>
+    <circle cx="232" cy="144" r="3.5"/>
+    <circle cx="230" cy="86" r="3.5"/>
+    <circle cx="296" cy="48" r="3.5"/>
+    <circle cx="378" cy="48" r="3.5"/>
+    <circle cx="196" cy="328" r="3.5"/>
+    <circle cx="286" cy="276" r="3.5"/>
+    <circle cx="382" cy="276" r="3.5"/>
+    <circle cx="44" cy="338" r="3.5"/>
+    <circle cx="114" cy="286" r="3.5"/>
+    <circle cx="172" cy="286" r="3.5"/>
+  </g>
+
+  <rect width="420" height="420" fill="url(#bgCore)" opacity="0.18"/>
+</svg>

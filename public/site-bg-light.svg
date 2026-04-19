@@ -1,0 +1,47 @@
+<svg width="420" height="420" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gridLight" x1="0" y1="0" x2="420" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0EA5E9" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#2563EB" stop-opacity="0.08"/>
+    </linearGradient>
+    <radialGradient id="glowLight" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(210 210) rotate(90) scale(190)">
+      <stop stop-color="#22D3EE" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="420" height="420" fill="url(#glowLight)"/>
+
+  <g stroke="url(#gridLight)" stroke-width="1">
+    <path d="M0 70H420"/>
+    <path d="M0 140H420"/>
+    <path d="M0 210H420"/>
+    <path d="M0 280H420"/>
+    <path d="M0 350H420"/>
+    <path d="M70 0V420"/>
+    <path d="M140 0V420"/>
+    <path d="M210 0V420"/>
+    <path d="M280 0V420"/>
+    <path d="M350 0V420"/>
+  </g>
+
+  <g stroke="#0EA5E9" stroke-opacity="0.28" stroke-width="1.4">
+    <path d="M40 80H130V130H200"/>
+    <path d="M220 300H300V250H380"/>
+    <path d="M70 360V300H150"/>
+    <path d="M280 40V100H340"/>
+  </g>
+
+  <g fill="#0EA5E9" fill-opacity="0.32">
+    <circle cx="40" cy="80" r="4"/>
+    <circle cx="130" cy="130" r="4"/>
+    <circle cx="200" cy="130" r="4"/>
+    <circle cx="220" cy="300" r="4"/>
+    <circle cx="300" cy="250" r="4"/>
+    <circle cx="380" cy="250" r="4"/>
+    <circle cx="70" cy="360" r="4"/>
+    <circle cx="150" cy="300" r="4"/>
+    <circle cx="280" cy="40" r="4"/>
+    <circle cx="340" cy="100" r="4"/>
+  </g>
+</svg>
